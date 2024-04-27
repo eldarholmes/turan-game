@@ -1,0 +1,4 @@
+repository "Turan Game@turan_game@cloud"
+  path "/"
+    br "/main"
+    co "/main"
