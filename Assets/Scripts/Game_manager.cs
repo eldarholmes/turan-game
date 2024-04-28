@@ -36,7 +36,7 @@ public class Game_manager : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (player.level >= 10)
+        if (player.up_chance >= 1)
         {
             upgrades.SetActive(true);
         }
@@ -81,20 +81,20 @@ public class Game_manager : MonoBehaviour
     {
         bullet_speed += 5f;
         upgrades.SetActive(false);
-        player.level -= 10f;
+        player.up_chance -= 1;
     }
     public void speed_of_player()
     {
         player.upSpeed(1f);
         upgrades.SetActive(false);
-        player.level -= 10f;
+        player.up_chance -= 1;
     }
 
     public void reduce_cd()
     {
         cool_down -= 0.1f;
         upgrades.SetActive(false);
-        player.level -= 10f;
+        player.up_chance -= 1;
     }
 
 }
