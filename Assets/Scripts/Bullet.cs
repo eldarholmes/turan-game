@@ -6,16 +6,16 @@ public class Bullet : MonoBehaviour
 {
     Player player;
     Rigidbody2D rb;
-
+    Game_manager gm;
     public float speed = 10f;
     private float x, y;
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         rb = GetComponent<Rigidbody2D>();
+        gm = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<Game_manager>();
         x = player.x;
         y = player.y;
-        Debug.Log(x + " " + y);
     }
 
     private void Update()
@@ -26,5 +26,18 @@ public class Bullet : MonoBehaviour
             rb.velocity = new Vector2(0, speed);
         }
         else rb.velocity = new Vector2(x, y) * speed;
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Point"))
+        {
+            Destroy(collision.gameObject);
+            player.levelUp(1);
+            Destroy(gameObject);
+            gm.isRemoved = true;
+        }
+        
     }
 }
